@@ -34,6 +34,7 @@ function App() {
   return (
     <form onSubmit={formik.handleSubmit}>
       <label>Name</label>
+      {/* Formik's unefficient way to set field properties */}
       <input 
         name='name'
         type='text'
@@ -44,22 +45,18 @@ function App() {
       {formik.touched.name && formik.errors.name ? <div>{formik.errors.name}</div> : null}
       <br />
       <label>Lastname</label>
+      {/* Formik's getFieldProps automatically settles the value, onBlur */}
       <input 
-        name='lastname'
         type='text'
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.lastname}
+        {...formik.getFieldProps('lastname')}
       />
       {formik.touched.lastname && formik.errors.lastname ? <div>{formik.errors.lastname}</div> : null}
       <br />
       <label>Email</label>
+
       <input 
-        name='email'
         type='email'
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
+        {...formik.getFieldProps('email')}
       />
       {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
       <button type='submit'>Send</button>
