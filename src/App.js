@@ -1,4 +1,4 @@
-import { Formik } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 const validate = (values) => {
   const errors = {}
@@ -26,34 +26,23 @@ function App() {
       validate={validate}
       onSubmit={values => console.log(values)}
     >
-      {formik => 
-        <form onSubmit={formik.handleSubmit}>
-          <label>Name</label>
-          {/* Formik's unefficient way to set field properties */}
-          <input 
-            type='text'
-            {...formik.getFieldProps('name')}
-          />
-          {formik.touched.name && formik.errors.name ? <div>{formik.errors.name}</div> : null}
-          <br />
-          <label>Lastname</label>
-          {/* Formik's getFieldProps automatically settles the value, onBlur */}
-          <input 
-            type='text'
-            {...formik.getFieldProps('lastname')}
-          />
-          {formik.touched.lastname && formik.errors.lastname ? <div>{formik.errors.lastname}</div> : null}
-          <br />
-          <label>Email</label>
+      <Form>
+        <label>Name</label>
+        <Field name="name" type="text" />
+        <ErrorMessage name="name" />
+        <br />
 
-          <input 
-            type='email'
-            {...formik.getFieldProps('email')}
-          />
-          {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
-          <button type='submit'>Send</button>
-        </form>
-      }
+        <label>Lastname</label>
+        <Field name="lastname" type="text" />
+        <ErrorMessage name="lastname" />
+        <br />
+
+        <label>Email</label>
+        <Field name="email" type="email" />
+        <ErrorMessage name="email" />
+
+        <button type="submit">Send</button>
+      </Form>
     </Formik>
     
   )
