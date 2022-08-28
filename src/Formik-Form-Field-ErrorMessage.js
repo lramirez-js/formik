@@ -28,11 +28,7 @@ function App() {
     >
       <Form>
         <label>Name</label>
-        <Field name="name" type="text" className="input"/>
-        <Field name="select" as="select" className="input">
-          <option value="myOption1">Option 1</option>
-          <option value="myOption2">Option 2</option>
-        </Field>
+        <Field name="name" type="text" />
         <ErrorMessage name="name" />
         <br />
 
